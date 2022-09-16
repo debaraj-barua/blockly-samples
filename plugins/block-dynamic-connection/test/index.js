@@ -11,6 +11,7 @@
 import * as Blockly from 'blockly';
 import {createPlayground} from '@blockly/dev-tools';
 import * as BlockDynamicConnection from '../src/index';
+import {category} from '../../block-test/src/align';
 
 /**
  * Create a workspace.
@@ -25,9 +26,21 @@ function createWorkspace(blocklyDiv, options) {
 document.addEventListener('DOMContentLoaded', function() {
   BlockDynamicConnection.overrideOldBlockDefinitions();
 
+  const toolbox = {
+    kind: 'flyoutToolbox',
+    contents: [
+      {
+        kind: 'block',
+        type: 'controls_if',
+      },
+    ],
+  };
   const defaultOptions = {
     toolbox: document.getElementById('toolbox'),
   };
-  createPlayground(document.getElementById('root'), createWorkspace,
-      defaultOptions);
+  createPlayground(
+      document.getElementById('root'),
+      createWorkspace,
+      defaultOptions
+  );
 });
